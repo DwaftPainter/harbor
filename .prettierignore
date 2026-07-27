@@ -1,0 +1,6 @@
+.next
+node_modules
+src/db/migrations
+pnpm-lock.yaml
+AGENTS.md
+CLAUDE.md
