@@ -1,6 +1,6 @@
 # Authentication architecture
 
-Status: Draft
+Status: Review
 
 ## Boundary
 
@@ -52,3 +52,19 @@ feature threat models.
 Record security-relevant outcomes without password, token, secret, or excessive
 personal data. Retention and user deletion behavior follow the data lifecycle
 policy.
+
+## Initial session policy
+
+Email/password is the only enabled identity method. Passwords are 12–128
+characters and remain Better Auth-hashed. Database sessions expire after seven
+days, refresh at most once per day, and have a ten-minute freshness window.
+Account linking is disabled. Only server components and route handlers make
+authoritative session decisions; client session state is never an authorization
+boundary.
+
+## Deferred controls
+
+Email verification and recovery require an approved transactional email
+dependency. Distributed rate limiting and security audit events require the
+Phase 02 operational design. Their absence keeps authentication in review and
+prevents production certification.

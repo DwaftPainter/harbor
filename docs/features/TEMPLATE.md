@@ -44,6 +44,18 @@ Routes and loading, empty, stale, partial, error, forbidden, and success states.
 
 Input, state, security, and provider validation.
 
+## Security
+
+Threats, controls, secret handling, privacy, authorization, and residual risk.
+
+## Testing
+
+Acceptance, invariant, permission, failure, concurrency, and operational tests.
+
+## Operations
+
+Telemetry, alerts, ownership, rollout, rollback, recovery, and support guidance.
+
 ## Edge cases
 
 Concurrency, retries, expiry, deletion, partial failure, and scale.

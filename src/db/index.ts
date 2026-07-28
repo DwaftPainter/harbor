@@ -1,13 +1,24 @@
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 
-import { env } from "@/env";
+import { getServerEnv } from "@/env";
 
 import * as schema from "./schema";
 
-const client = neon(env.DATABASE_URL);
+function createDatabase() {
+  const client = neon(getServerEnv().DATABASE_URL);
 
-export const db = drizzle({
-  client,
-  schema,
-});
+  return drizzle({
+    client,
+    schema,
+  });
+}
+
+export type Database = ReturnType<typeof createDatabase>;
+
+let database: Database | undefined;
+
+export function getDb(): Database {
+  database ??= createDatabase();
+  return database;
+}

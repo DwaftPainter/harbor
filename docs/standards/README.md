@@ -1,5 +1,7 @@
 # Development standards
 
+Status: Active
+
 These standards are mandatory unless an approved ADR records an exception.
 
 - [Naming conventions](naming.md)

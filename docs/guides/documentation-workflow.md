@@ -1,6 +1,6 @@
 # Documentation workflow
 
-Status: Draft
+Status: Implemented
 
 ## Purpose
 

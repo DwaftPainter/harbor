@@ -4,16 +4,28 @@ const serverEnvSchema = z.object({
   DATABASE_URL: z.url(),
   BETTER_AUTH_SECRET: z.string().min(32),
   BETTER_AUTH_URL: z.url(),
+  APP_VERSION: z.string().min(1).default("development"),
 });
 
-const parsedEnv = serverEnvSchema.safeParse(process.env);
+export type ServerEnv = z.infer<typeof serverEnvSchema>;
 
-if (!parsedEnv.success) {
-  const details = parsedEnv.error.issues
-    .map((issue) => `${issue.path.join(".")}: ${issue.message}`)
-    .join("; ");
+let cachedEnv: ServerEnv | undefined;
 
-  throw new Error(`Invalid server environment: ${details}`);
+export function getServerEnv(): ServerEnv {
+  if (cachedEnv) {
+    return cachedEnv;
+  }
+
+  const parsedEnv = serverEnvSchema.safeParse(process.env);
+
+  if (!parsedEnv.success) {
+    const invalidKeys = parsedEnv.error.issues
+      .map((issue) => issue.path.join("."))
+      .join(", ");
+
+    throw new Error(`Invalid server environment keys: ${invalidKeys}`);
+  }
+
+  cachedEnv = parsedEnv.data;
+  return cachedEnv;
 }
-
-export const env = parsedEnv.data;
