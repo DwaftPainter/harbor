@@ -80,9 +80,11 @@ enumeration, revocation, and cross-user tests against isolated PostgreSQL.
 ## Operations
 
 `BETTER_AUTH_URL` must be the canonical origin and `BETTER_AUTH_SECRET` must be
-a high-entropy secret of at least 32 characters. Apply the checked-in auth
-migration before serving `/api/auth`. Treat sustained auth errors or rate-limit
-events as security-operational signals without logging credentials or tokens.
+a high-entropy secret of at least 32 characters. `BETTER_AUTH_API_KEY` is a
+server-only secret used by the dashboard plugin for ownership verification and
+infrastructure APIs. Apply the checked-in auth migration before serving
+`/api/auth`. Treat sustained auth errors or rate-limit events as
+security-operational signals without logging credentials or tokens.
 
 ## Edge cases
 

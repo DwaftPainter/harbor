@@ -47,6 +47,8 @@ from completion and this phase is not production-certified.
 ## Current implementation
 
 - Better Auth is mounted at `/api/auth` with the Drizzle PostgreSQL adapter.
+- The Better Auth Infrastructure dashboard plugin is mounted with a required
+  server-only API key for project ownership verification.
 - Email/password sign-up and sign-in enforce a 12–128 character password
   boundary and generic UI failure messages.
 - Authentication, identity, session, empty-state, and recoverable error surfaces
