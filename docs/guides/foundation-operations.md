@@ -22,12 +22,13 @@ layers, or committed environment files.
 
 Required runtime variables:
 
-| Variable             | Classification | Purpose                               |
-| -------------------- | -------------- | ------------------------------------- |
-| `DATABASE_URL`       | Secret         | PostgreSQL connection URL             |
-| `BETTER_AUTH_SECRET` | Secret         | Better Auth signing/encryption secret |
-| `BETTER_AUTH_URL`    | Public config  | Canonical same-origin application URL |
-| `APP_VERSION`        | Public config  | Immutable commit or release identity  |
+| Variable              | Classification | Purpose                                     |
+| --------------------- | -------------- | ------------------------------------------- |
+| `DATABASE_URL`        | Secret         | PostgreSQL connection URL                   |
+| `BETTER_AUTH_SECRET`  | Secret         | Better Auth signing/encryption secret       |
+| `BETTER_AUTH_URL`     | Public config  | Canonical same-origin application URL       |
+| `BETTER_AUTH_API_KEY` | Secret         | Better Auth dashboard ownership and API key |
+| `APP_VERSION`         | Public config  | Immutable commit or release identity        |
 
 Only variables prefixed with `NEXT_PUBLIC_` may enter browser bundles. Harbor
 currently defines none.

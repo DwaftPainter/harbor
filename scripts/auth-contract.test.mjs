@@ -27,6 +27,15 @@ test("the initial password, session, and linking policies stay explicit", async 
   assert.match(authConfig, /freshAge: 60 \* 10/);
 });
 
+test("the Better Auth dashboard plugin requires its server API key", async () => {
+  const authConfig = await readSource("src/lib/auth.ts");
+  const envConfig = await readSource("src/env.ts");
+
+  assert.match(authConfig, /import \{ dash \} from "@better-auth\/infra"/);
+  assert.match(authConfig, /dash\(\{\s*apiKey: env\.BETTER_AUTH_API_KEY/s);
+  assert.match(envConfig, /BETTER_AUTH_API_KEY: z\.string\(\)\.min\(1\)/);
+});
+
 test("dashboard routes fail closed without an authoritative session", async () => {
   const layout = await readSource("src/app/(dashboard)/layout.tsx");
   const sessionResolver = await readSource(

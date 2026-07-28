@@ -1,3 +1,4 @@
+import { dash } from "@better-auth/infra";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
@@ -48,6 +49,11 @@ function createAuth() {
         },
       },
     },
+    plugins: [
+      dash({
+        apiKey: env.BETTER_AUTH_API_KEY,
+      }),
+    ],
   });
 }
 
