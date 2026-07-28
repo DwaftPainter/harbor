@@ -1,6 +1,6 @@
 # Documentation standards
 
-Status: Draft
+Status: Implemented
 
 ## Metadata
 
@@ -34,6 +34,6 @@ phase scope, or operational responsibility.
 
 ## Validation
 
-CI checks Markdown formatting, internal links, duplicate headings where harmful,
-required sections/templates, Mermaid syntax where tooling supports it, and
-prohibited secrets. Human review checks correctness and sufficiency.
+CI checks Markdown formatting, document metadata, internal links, and required
+phase/feature-template sections. Mermaid semantics, prohibited secrets,
+correctness, and sufficiency remain human review responsibilities.

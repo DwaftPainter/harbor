@@ -1,6 +1,6 @@
 # Phase 02 — Authentication
 
-Status: Draft  
+Status: Review
 Estimated complexity: High
 
 ## Objective
@@ -23,6 +23,12 @@ account linking policy, auth UI, abuse controls, audit hooks, and recovery.
 - Identity methods, session policy, email delivery dependency, and threat model
   are decided.
 
+The initial implementation is authorized for email/password identity with a
+seven-day renewable database session, a 24-hour refresh interval, a ten-minute
+freshness window, and explicit session revocation. Account linking is disabled.
+Email delivery is not selected, so verification and recovery flows are blocked
+from completion and this phase is not production-certified.
+
 ## Deliverables
 
 - User, account, session, and verification lifecycle.
@@ -37,6 +43,19 @@ account linking policy, auth UI, abuse controls, audit hooks, and recovery.
 3. Implement protected-session resolution.
 4. Add sign-in, sign-out, verification, and recovery flows.
 5. Add abuse, audit, and session-management tests.
+
+## Current implementation
+
+- Better Auth is mounted at `/api/auth` with the Drizzle PostgreSQL adapter.
+- Email/password sign-up and sign-in enforce a 12–128 character password
+  boundary and generic UI failure messages.
+- Authentication, identity, session, empty-state, and recoverable error surfaces
+  compose the project-owned shadcn/ui primitives.
+- Dashboard routes resolve the authoritative server session and fail closed to
+  `/sign-in`.
+- Users can sign out the current session or revoke every other session.
+- Built-in endpoint rate limiting is enabled as an initial per-instance abuse
+  control; shared/distributed enforcement remains required before launch.
 
 ## Documents required
 

@@ -1,6 +1,6 @@
 # Phase 00 — Documentation governance
 
-Status: Draft  
+Status: Implemented
 Estimated complexity: Medium
 
 ## Objective
@@ -46,11 +46,21 @@ link validation, ADR process, standards, prompts, and project skills.
 
 ## Completion checklist
 
-- [ ] Every documentation area has an index and owner model.
-- [ ] Every planned feature maps to a phase.
-- [ ] Templates contain security, testing, and operations requirements.
-- [ ] Document lifecycle and change control are approved.
-- [ ] Link and formatting checks are defined.
+- [x] Every documentation area has an index and owner model.
+- [x] Every planned feature maps to a phase.
+- [x] Templates contain security, testing, and operations requirements.
+- [x] Document lifecycle and change control are implemented.
+- [x] Link and formatting checks are defined.
+
+## Evidence
+
+- `docs/README.md` defines lifecycle, navigation, change control, and role-based
+  ownership.
+- `docs/features/README.md` maps every planned feature to a phase.
+- Phase and feature templates require security, testing, and operations.
+- `pnpm docs:check` validates metadata, required sections, and local links;
+  Prettier enforces Markdown formatting in `pnpm check`.
+- `.github/workflows/quality.yml` enforces the documentation gates for changes.
 
 ## Exit criteria
 

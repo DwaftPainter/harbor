@@ -152,6 +152,19 @@ See the [complete roadmap](roadmap/README.md) and [phase index](phases/README.md
 | [Prompts](prompts/README.md)           | Reusable AI task prompts                      |
 | [AI skills](skills/README.md)          | Context packs agents load before work         |
 
+## Ownership model
+
+Ownership is role-based until named maintainers are recorded in repository
+settings. Product owns roadmap, phase, and feature intent. Engineering owns
+architecture, API, database, implementation guides, and code-linked accuracy.
+Security owns security requirements and threat decisions. Operations owns
+deployment, telemetry, recovery, and incident guidance. Changes spanning areas
+require every affected owner role to review them.
+
+Area indexes are the navigation owners for their children: each new
+authoritative document must be linked from its nearest index, and each planned
+feature must be mapped in `features/README.md` to a delivery phase.
+
 ## Change rule
 
 When implementation and documentation disagree, implementation is considered

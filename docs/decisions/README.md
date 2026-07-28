@@ -1,5 +1,7 @@
 # Architecture decisions
 
+Status: Active
+
 Architecture Decision Records preserve the context and consequences of material
 choices.
 

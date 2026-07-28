@@ -1,6 +1,6 @@
 # Phase 01 — Foundation
 
-Status: Draft  
+Status: Approved
 Estimated complexity: Medium
 
 ## Objective
@@ -47,11 +47,42 @@ gates, and operational ownership.
 
 ## Completion checklist
 
-- [ ] Fresh install, development, checks, and production build are reproducible.
-- [ ] No secret enters client bundles, logs, or source control.
-- [ ] Migration generation and application responsibilities are documented.
-- [ ] Basic health and error telemetry are observable.
-- [ ] No unused product abstraction or demo data exists.
+- [x] Fresh install, development, checks, and production build are reproducible.
+- [x] No secret enters client bundles, logs, or source control.
+- [x] Migration generation and application responsibilities are documented.
+- [x] Basic health and error telemetry are observable.
+- [x] No unused product abstraction or demo data exists.
+
+## Evidence
+
+- `package.json`, the frozen lockfile, and the quality workflow pin the supported
+  toolchain and run documentation, lint, type, test, format, and build gates.
+- Server-only environment validation and the structured logger keep secrets out
+  of browser bundles and operational events.
+- The foundation operations guide defines environment, migration, deployment,
+  health, telemetry, rollback, and restore responsibilities.
+- Liveness and dependency-aware readiness routes provide uncached probe
+  contracts; Next.js instrumentation captures startup and request failures.
+- The standalone non-root container and accessible error/not-found boundaries
+  establish the production runtime and recovery UI baseline.
+
+## Approval
+
+Approved by the product owner on 2026-07-28 to begin Phase 02. Approval accepts
+the foundation implementation and carries the following production-like
+validation forward as named operational follow-up; it does not claim that the
+checks were executed.
+
+## Remaining operational evidence
+
+- Build and start the container on a host with a running Docker daemon.
+- Confirm readiness returns 200 against an isolated PostgreSQL database.
+- Exercise traffic rollback between two compatible image versions.
+
+The standalone production server, liveness 200 response, dependency-failure
+readiness 503 response, security headers, and safe readiness telemetry have been
+verified locally. The remaining checks require external runtime dependencies
+and remain required before production launch.
 
 ## Exit criteria
 
