@@ -49,8 +49,10 @@ responses do not disclose whether an email exists.
 
 ## UI overview
 
-Sign-in, verification, recovery, and session-management surfaces. All include
-pending, expired, invalid, rate-limited, success, and safe retry states.
+Sign-in, verification, recovery, and session-management surfaces. Users can
+review active session user agents and lifetimes, revoke one other session, or
+revoke every other session. These surfaces include pending, expired, invalid,
+rate-limited, success, and safe retry states.
 Implemented authentication and account surfaces compose the project-owned
 shadcn/ui primitives for consistent accessible controls and feedback.
 
@@ -73,9 +75,10 @@ distributed abuse control, and security audit events remain launch blockers.
 
 ## Testing
 
-The initial slice is covered by type, lint, build, documentation, and route
-contract checks. Phase completion still requires happy, failure, expiry, replay,
-enumeration, revocation, and cross-user tests against isolated PostgreSQL.
+The initial slice is covered by type, lint, build, documentation, route, and
+session-management contract checks. Phase completion still requires happy,
+failure, expiry, replay, enumeration, revocation, and cross-user tests against
+isolated PostgreSQL.
 
 ## Operations
 

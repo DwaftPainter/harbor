@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 import { PageContainer } from "@/components/page-container";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -10,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { RevokeOtherSessionsButton } from "@/features/auth/components/revoke-other-sessions-button";
+import { SessionManager } from "@/features/auth/components/session-manager";
 import { getCurrentSession } from "@/features/auth/server/session";
 
 export const metadata: Metadata = {
@@ -19,8 +20,13 @@ export const metadata: Metadata = {
 
 export default async function SettingsPage() {
   const session = await getCurrentSession();
+
+  if (!session) {
+    redirect("/sign-in");
+  }
+
   const initials =
-    session?.user.name
+    session.user.name
       .split(/\s+/)
       .map((part) => part[0])
       .join("")
@@ -48,13 +54,13 @@ export default async function SettingsPage() {
               <div className="min-w-0">
                 <dt className="text-muted-foreground">Name</dt>
                 <dd className="mt-1 truncate font-medium">
-                  {session?.user.name}
+                  {session.user.name}
                 </dd>
               </div>
               <div className="min-w-0">
                 <dt className="text-muted-foreground">Email</dt>
                 <dd className="mt-1 truncate font-medium">
-                  {session?.user.email}
+                  {session.user.email}
                 </dd>
               </div>
             </dl>
@@ -65,10 +71,10 @@ export default async function SettingsPage() {
           <div>
             <h2 className="font-semibold">Sessions</h2>
             <p className="text-muted-foreground mt-2 mb-4 text-sm leading-6">
-              Sign out every other browser or device where your Harbor account
-              is currently active.
+              Review active browsers and devices, then revoke any session you no
+              longer trust.
             </p>
-            <RevokeOtherSessionsButton />
+            <SessionManager currentSessionId={session.session.id} />
           </div>
         </CardContent>
       </Card>

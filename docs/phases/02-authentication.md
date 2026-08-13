@@ -55,7 +55,8 @@ from completion and this phase is not production-certified.
   compose the project-owned shadcn/ui primitives.
 - Dashboard routes resolve the authoritative server session and fail closed to
   `/sign-in`.
-- Users can sign out the current session or revoke every other session.
+- Users can review active session user agents and lifetimes, revoke one other
+  session, revoke every other session, or sign out the current session.
 - Built-in endpoint rate limiting is enabled as an initial per-instance abuse
   control; shared/distributed enforcement remains required before launch.
 

@@ -48,3 +48,22 @@ test("dashboard routes fail closed without an authoritative session", async () =
   assert.match(sessionResolver, /await connection\(\)/);
   assert.match(sessionResolver, /getAuth\(\)\.api\.getSession/);
 });
+
+test("account settings let users review and selectively revoke sessions", async () => {
+  const settingsPage = await readSource(
+    "src/app/(dashboard)/settings/page.tsx",
+  );
+  const sessionManager = await readSource(
+    "src/features/auth/components/session-manager.tsx",
+  );
+
+  assert.match(
+    settingsPage,
+    /<SessionManager currentSessionId=\{session\.session\.id\} \/>/,
+  );
+  assert.match(sessionManager, /authClient\.listSessions\(\)/);
+  assert.match(sessionManager, /authClient\.revokeSession\(\{\s*token\s*\}\)/s);
+  assert.match(sessionManager, /session\.id === currentSessionId/);
+  assert.match(sessionManager, /Loading active sessions/);
+  assert.match(sessionManager, /Active sessions could not be loaded/);
+});
