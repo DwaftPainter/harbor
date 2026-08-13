@@ -9,17 +9,28 @@ export const metadata: Metadata = {
   title: "Sign in",
 };
 
-export default async function SignInPage() {
+export default async function SignInPage({
+  searchParams,
+}: PageProps<"/sign-in">) {
   if (await getCurrentSession()) {
     redirect("/");
   }
+
+  const { reset } = await searchParams;
 
   return (
     <AuthShell
       title="Welcome back"
       description="Sign in with your Harbor account to continue."
     >
-      <AuthForm mode="sign-in" />
+      <AuthForm
+        initialMessage={
+          reset === "success"
+            ? "Your password was reset. Sign in with your new password."
+            : undefined
+        }
+        mode="sign-in"
+      />
     </AuthShell>
   );
 }

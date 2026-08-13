@@ -22,13 +22,17 @@ layers, or committed environment files.
 
 Required runtime variables:
 
-| Variable              | Classification | Purpose                                     |
-| --------------------- | -------------- | ------------------------------------------- |
-| `DATABASE_URL`        | Secret         | PostgreSQL connection URL                   |
-| `BETTER_AUTH_SECRET`  | Secret         | Better Auth signing/encryption secret       |
-| `BETTER_AUTH_URL`     | Public config  | Canonical same-origin application URL       |
-| `BETTER_AUTH_API_KEY` | Secret         | Better Auth dashboard ownership and API key |
-| `APP_VERSION`         | Public config  | Immutable commit or release identity        |
+| Variable                   | Classification | Purpose                                     |
+| -------------------------- | -------------- | ------------------------------------------- |
+| `DATABASE_URL`             | Secret         | PostgreSQL connection URL                   |
+| `BETTER_AUTH_SECRET`       | Secret         | Better Auth signing/encryption secret       |
+| `BETTER_AUTH_URL`          | Public config  | Canonical same-origin application URL       |
+| `BETTER_AUTH_API_KEY`      | Secret         | Better Auth dashboard ownership and API key |
+| `RESEND_API_KEY`           | Secret         | Transactional authentication email delivery |
+| `AUTH_EMAIL_FROM`          | Public config  | Verified authentication sender identity     |
+| `UPSTASH_REDIS_REST_URL`   | Secret         | Shared authentication rate-limit store      |
+| `UPSTASH_REDIS_REST_TOKEN` | Secret         | Shared rate-limit store credential          |
+| `APP_VERSION`              | Public config  | Immutable commit or release identity        |
 
 Only variables prefixed with `NEXT_PUBLIC_` may enter browser bundles. Harbor
 currently defines none.
@@ -88,6 +92,10 @@ Every server instance writes `application.started` with runtime and version.
 Unhandled server request failures write `request.failed` with method,
 query-free path, route, route type, and an opaque digest when available.
 Readiness failures write `health.readiness_failed`.
+
+Sensitive authentication outcomes write allowlisted `auth.*` events containing
+only method, status, duration, and success or failure. They never include
+addresses, credentials, cookies, request bodies, links, or challenge material.
 
 Logs are JSON on standard output for collection by the deployment platform.
 They intentionally omit request headers, cookies, bodies, query strings, error

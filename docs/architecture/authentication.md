@@ -32,8 +32,8 @@ sequenceDiagram
   redirects.
 - Session cookies are secure, HTTP-only, appropriately same-site, and narrowly
   scoped.
-- Verification and recovery artifacts are one-time, short-lived, and
-  non-disclosing.
+- Verification links are short-lived and idempotent after success. Recovery
+  artifacts are short-lived, single-use, and non-disclosing.
 - Session revocation, expiry, credential change, and suspected compromise have
   documented behavior.
 - Provider OAuth tokens, if later added, are distinct from Harbor cloud
@@ -62,9 +62,11 @@ Account linking is disabled. Only server components and route handlers make
 authoritative session decisions; client session state is never an authorization
 boundary.
 
-## Deferred controls
+## Operational controls
 
-Email verification and recovery require an approved transactional email
-dependency. Distributed rate limiting and security audit events require the
-Phase 02 operational design. Their absence keeps authentication in review and
-prevents production certification.
+Resend delivers verification and recovery email from a configured sender.
+Upstash Redis stores shared rate-limit counters and Better Auth's ephemeral
+cache. Session and verification records are also retained in PostgreSQL, and
+single-use recovery challenges are consumed transactionally there. Harbor emits
+allowlisted structured authentication outcomes without identity or credential
+material. Live provider checks remain required before production certification.

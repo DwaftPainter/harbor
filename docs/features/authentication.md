@@ -59,8 +59,9 @@ shadcn/ui primitives for consistent accessible controls and feedback.
 ## Validation
 
 Normalize email according to approved identity policy; bound inputs; validate
-redirects; require one-time unexpired challenges; rotate or revoke sessions after
-sensitive credential changes.
+redirects; require unexpired challenges; atomically consume recovery challenges;
+rotate or revoke sessions after sensitive credential changes. Verification links
+are idempotent after success until their one-hour expiry.
 
 The initial email/password boundary accepts passwords from 12 through 128
 characters. Browser redirects use fixed same-origin paths. Sessions expire after
@@ -69,16 +70,18 @@ seven days, refresh at most daily, and are considered fresh for ten minutes.
 ## Security
 
 Account linking is disabled. Auth endpoints use Better Auth origin/CSRF
-protections and initial per-instance rate limits. UI errors do not distinguish
-unknown users from invalid credentials. Email verification, password recovery,
-distributed abuse control, and security audit events remain launch blockers.
+protections and Upstash-backed distributed rate limits. Session and verification
+records remain durable in PostgreSQL, where recovery challenges are consumed
+transactionally. UI errors do not distinguish
+unknown users from invalid credentials. Harbor telemetry records allowlisted
+security outcomes without credential or identity material.
 
 ## Testing
 
-The initial slice is covered by type, lint, build, documentation, route, and
-session-management contract checks. Phase completion still requires happy,
-failure, expiry, replay, enumeration, revocation, and cross-user tests against
-isolated PostgreSQL.
+Contract tests cover policy, server-only delivery/storage, protected routes, and
+session management. An isolated PostgreSQL-compatible lifecycle test covers
+verified signup, enumeration-neutral recovery, expiry, replay, session
+revocation, and credential replacement without contacting production services.
 
 ## Operations
 
@@ -86,8 +89,10 @@ isolated PostgreSQL.
 a high-entropy secret of at least 32 characters. `BETTER_AUTH_API_KEY` is a
 server-only secret used by the dashboard plugin for ownership verification and
 infrastructure APIs. Apply the checked-in auth migration before serving
-`/api/auth`. Treat sustained auth errors or rate-limit events as
-security-operational signals without logging credentials or tokens.
+`/api/auth`. Resend requires `RESEND_API_KEY` plus a verified
+`AUTH_EMAIL_FROM`; shared rate limiting requires the Upstash REST URL and token.
+Treat sustained auth failures, delivery errors, and rate-limit events as
+security-operational signals without logging credentials or challenge material.
 
 ## Edge cases
 
@@ -116,7 +121,9 @@ impersonation in the initial phase.
 - Authentication never grants organization membership.
 - Verification and recovery cannot be declared complete without email delivery.
 
-## Open questions
+## Operational certification
 
-- Which transactional email provider and sender domain will Harbor use?
-- Which shared rate-limit store will protect horizontally scaled deployments?
+Resend is the transactional provider and Upstash Redis is the shared rate-limit
+store. Production certification requires exercising delivery from the verified
+sender domain and confirming shared counters with two deployed application
+instances.

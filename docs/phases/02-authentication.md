@@ -26,8 +26,9 @@ account linking policy, auth UI, abuse controls, audit hooks, and recovery.
 The initial implementation is authorized for email/password identity with a
 seven-day renewable database session, a 24-hour refresh interval, a ten-minute
 freshness window, and explicit session revocation. Account linking is disabled.
-Email delivery is not selected, so verification and recovery flows are blocked
-from completion and this phase is not production-certified.
+Resend provides transactional verification and recovery delivery. Upstash Redis
+provides shared rate limiting, while PostgreSQL atomically consumes single-use
+recovery challenges.
 
 ## Deliverables
 
@@ -57,8 +58,12 @@ from completion and this phase is not production-certified.
   `/sign-in`.
 - Users can review active session user agents and lifetimes, revoke one other
   session, revoke every other session, or sign out the current session.
-- Built-in endpoint rate limiting is enabled as an initial per-instance abuse
-  control; shared/distributed enforcement remains required before launch.
+- Verification and enumeration-safe recovery use one-hour links delivered by
+  Resend; password reset consumes its challenge and revokes existing sessions.
+- Auth limits use Upstash secondary storage across instances. PostgreSQL retains
+  session and verification records and atomically consumes recovery challenges.
+- Allowlisted structured auth events record outcomes without identity,
+  credential, cookie, URL, or request-body material.
 
 ## Documents required
 
@@ -69,11 +74,16 @@ from completion and this phase is not production-certified.
 
 ## Completion checklist
 
-- [ ] Auth flows pass happy, failure, expiry, replay, and enumeration tests.
-- [ ] Tokens and credentials never appear in logs or client-readable storage.
-- [ ] Sessions can be revoked and expire according to policy.
-- [ ] Anonymous and authenticated route behavior is explicit.
-- [ ] Authentication does not imply organization authorization.
+- [x] Auth flows pass happy, failure, expiry, replay, and enumeration tests.
+- [x] Tokens and credentials never appear in logs or client-readable storage.
+- [x] Sessions can be revoked and expire according to policy.
+- [x] Anonymous and authenticated route behavior is explicit.
+- [x] Authentication does not imply organization authorization.
+
+## Remaining operational evidence
+
+- Verify Resend delivery from the production sender domain.
+- Verify two deployed instances share Upstash rate-limit counters.
 
 ## Exit criteria
 
