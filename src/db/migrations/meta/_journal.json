@@ -8,6 +8,48 @@
       "when": 1785142608719,
       "tag": "0000_mature_the_santerians",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1787804945394,
+      "tag": "0001_moaning_boom_boom",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1787813069694,
+      "tag": "0002_marvelous_dragon_lord",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1787814641088,
+      "tag": "0003_faithful_silver_sable",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1787815154363,
+      "tag": "0004_wet_cobalt_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1787815941514,
+      "tag": "0005_fresh_kitty_pryde",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1787817800374,
+      "tag": "0006_ambitious_lightspeed",
+      "breakpoints": true
     }
   ]
 }
