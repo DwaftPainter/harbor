@@ -1,6 +1,6 @@
 # Provider synchronization
 
-Status: Draft  
+Status: Implemented  
 Owner: Integrations platform team  
 Phase: 06
 

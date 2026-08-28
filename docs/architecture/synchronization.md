@@ -1,6 +1,6 @@
 # Synchronization architecture
 
-Status: Draft
+Status: Implemented
 
 ## Objective
 

@@ -1,6 +1,6 @@
 # Phase 06 — Synchronization engine
 
-Status: Draft  
+Status: Review  
 Estimated complexity: Very high
 
 ## Objective
@@ -45,11 +45,11 @@ rate limits, reconciliation, deletion detection, cancellation, and telemetry.
 
 ## Completion checklist
 
-- [ ] Duplicate and out-of-order delivery are safe.
-- [ ] Concurrent syncs obey connection-level lease rules.
-- [ ] Partial failure resumes without corrupting inventory.
-- [ ] Rate-limit responses defer work rather than amplify traffic.
-- [ ] Metrics expose lag, duration, errors, retries, and inventory changes.
+- [x] Duplicate and out-of-order delivery are safe.
+- [x] Concurrent syncs obey connection-level lease rules.
+- [x] Partial failure resumes without corrupting inventory.
+- [x] Rate-limit responses defer work rather than amplify traffic.
+- [x] Metrics expose lag, duration, errors, retries, and inventory changes.
 
 ## Exit criteria
 
