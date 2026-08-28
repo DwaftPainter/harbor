@@ -1,24 +1,47 @@
-import type { Metadata } from "next";
 import { Boxes } from "lucide-react";
+import type { Metadata } from "next";
+import { connection } from "next/server";
 
-import { EmptyState } from "@/components/empty-state";
 import { PageContainer } from "@/components/page-container";
+import { ApplicationList } from "@/features/applications/components/application-list";
+import { getCurrentSession } from "@/features/auth/server/session";
+import { getActiveOrganization } from "@/features/organizations/server/active-organization";
 
 export const metadata: Metadata = {
-  title: "Applications",
+  title: "Applications — Harbor",
 };
 
-export default function ApplicationsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ApplicationsPage() {
+  await connection();
+  const session = await getCurrentSession();
+  const { activeOrg } = session?.user
+    ? await getActiveOrganization(session.user.id)
+    : { activeOrg: null };
+
   return (
-    <PageContainer
-      title="Applications"
-      description="Manage applications across connected cloud providers."
-    >
-      <EmptyState
-        icon={Boxes}
-        title="No applications yet"
-        description="Applications will appear here after you connect a provider."
-      />
+    <PageContainer>
+      <div className="space-y-6">
+        <div>
+          <h2 className="text-foreground flex items-center gap-2.5 text-2xl font-bold tracking-tight">
+            <Boxes className="text-primary size-6" /> Applications
+          </h2>
+          <p className="text-muted-foreground text-sm">
+            Logical software applications grouped across environments and bound
+            cloud resources.
+          </p>
+        </div>
+
+        {activeOrg ? (
+          <ApplicationList organizationId={activeOrg.id} />
+        ) : (
+          <div className="text-muted-foreground rounded-lg border border-dashed p-12 text-center text-sm">
+            No active organization selected. Please select or create an
+            organization to view applications.
+          </div>
+        )}
+      </div>
     </PageContainer>
   );
 }

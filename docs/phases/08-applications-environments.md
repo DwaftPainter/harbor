@@ -1,6 +1,6 @@
 # Phase 08 — Applications and environments
 
-Status: Draft  
+Status: Review  
 Estimated complexity: High
 
 ## Objective
@@ -46,11 +46,11 @@ suggestions, manual correction, naming, archive behavior, and overview UI.
 
 ## Completion checklist
 
-- [ ] Resource binding ownership cannot cross organizations.
-- [ ] User-confirmed bindings override suggestions predictably.
-- [ ] Environment labels do not imply provider mutation.
-- [ ] Archive preserves audit and historical deployment context.
-- [ ] Empty and partially synced applications remain understandable.
+- [x] Resource binding ownership cannot cross organizations.
+- [x] User-confirmed bindings override suggestions predictably.
+- [x] Environment labels do not imply provider mutation.
+- [x] Archive preserves audit and historical deployment context.
+- [x] Empty and partially synced applications remain understandable.
 
 ## Exit criteria
 
