@@ -1,6 +1,6 @@
 # Phase 07 — Resource inventory
 
-Status: Draft  
+Status: Review  
 Estimated complexity: High
 
 ## Objective
@@ -44,11 +44,11 @@ soft deletion.
 
 ## Completion checklist
 
-- [ ] Identity remains stable across sync runs.
-- [ ] Raw metadata is size-limited and secret-scrubbed.
-- [ ] Fresh, stale, inaccessible, and deleted states are distinguishable.
-- [ ] Lists are deterministic and cursor-paginated.
-- [ ] Cross-organization inventory access fails closed.
+- [x] Identity remains stable across sync runs.
+- [x] Raw metadata is size-limited and secret-scrubbed.
+- [x] Fresh, stale, inaccessible, and deleted states are distinguishable.
+- [x] Lists are deterministic and cursor-paginated.
+- [x] Cross-organization inventory access fails closed.
 
 ## Exit criteria
 
