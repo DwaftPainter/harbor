@@ -1,6 +1,6 @@
 # Provider onboarding
 
-Status: Draft
+Status: Implemented
 
 ## Required discovery
 

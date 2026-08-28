@@ -1,6 +1,6 @@
 # Provider architecture
 
-Status: Draft
+Status: Implemented
 
 ## Purpose
 
