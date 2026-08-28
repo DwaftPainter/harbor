@@ -1,6 +1,6 @@
 # Organizations
 
-Status: Draft  
+Status: Implemented  
 Owner: Core product team  
 Phase: 03
 
