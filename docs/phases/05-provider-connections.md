@@ -1,6 +1,6 @@
 # Phase 05 — Provider connections
 
-Status: Draft  
+Status: Review  
 Estimated complexity: High
 
 ## Objective
@@ -46,11 +46,11 @@ scope guidance, validation, health, ownership, audit, and one initial adapter.
 
 ## Completion checklist
 
-- [ ] Plaintext credentials are never persisted, returned, or logged.
-- [ ] Validation is bounded by timeout and rate limits.
-- [ ] Revocation prevents new jobs immediately.
-- [ ] Connection identity is unique within documented scope.
-- [ ] Audit events contain no credential material.
+- [x] Plaintext credentials are never persisted, returned, or logged.
+- [x] Validation is bounded by timeout and rate limits.
+- [x] Revocation prevents new jobs immediately.
+- [x] Connection identity is unique within documented scope.
+- [x] Audit events contain no credential material.
 
 ## Exit criteria
 

@@ -1,6 +1,6 @@
 # Resource inventory
 
-Status: Draft  
+Status: Implemented  
 Owner: Resource platform team  
 Phase: 07
 

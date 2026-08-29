@@ -1,6 +1,6 @@
 # Background jobs
 
-Status: Draft  
+Status: Implemented  
 Owner: Platform team  
 Phase: 06 and 14
 

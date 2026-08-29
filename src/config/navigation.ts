@@ -1,4 +1,11 @@
-import { Boxes, Cable, LayoutDashboard, Rocket, Settings } from "lucide-react";
+import {
+  Boxes,
+  Cable,
+  Layers,
+  LayoutDashboard,
+  Rocket,
+  Settings,
+} from "lucide-react";
 
 import type { NavigationItem } from "@/types/navigation";
 
@@ -7,6 +14,11 @@ export const navigationItems = [
     label: "Dashboard",
     href: "/",
     icon: LayoutDashboard,
+  },
+  {
+    label: "Resources",
+    href: "/resources",
+    icon: Layers,
   },
   {
     label: "Applications",

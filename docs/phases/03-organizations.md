@@ -1,6 +1,6 @@
 # Phase 03 — Organizations
 
-Status: Draft  
+Status: Review  
 Estimated complexity: High
 
 ## Objective
@@ -45,11 +45,11 @@ member lifecycle, ownership transfer, and deletion constraints.
 
 ## Completion checklist
 
-- [ ] Every tenant-owned record has one unambiguous organization owner.
-- [ ] Cross-organization access tests fail closed.
-- [ ] Invitation replay and enumeration are prevented.
-- [ ] Last-owner and ownership-transfer invariants hold under concurrency.
-- [ ] Organization deletion is deferred or explicitly specified.
+- [x] Every tenant-owned record has one unambiguous organization owner.
+- [x] Cross-organization access tests fail closed.
+- [x] Invitation replay and enumeration are prevented.
+- [x] Last-owner and ownership-transfer invariants hold under concurrency.
+- [x] Organization deletion is deferred or explicitly specified.
 
 ## Exit criteria
 

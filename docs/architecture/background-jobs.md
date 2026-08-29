@@ -1,6 +1,6 @@
 # Background jobs architecture
 
-Status: Draft
+Status: Implemented
 
 ## Responsibilities
 

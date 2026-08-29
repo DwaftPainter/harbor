@@ -1,6 +1,6 @@
 # Memberships and authorization
 
-Status: Draft  
+Status: Implemented  
 Owner: Core security team  
 Phase: 03–04
 

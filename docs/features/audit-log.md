@@ -1,6 +1,6 @@
 # Audit log
 
-Status: Draft  
+Status: Implemented  
 Owner: Security platform team  
 Phase: 04 onward
 

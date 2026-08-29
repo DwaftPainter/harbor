@@ -1,6 +1,6 @@
 # Phase 04 — Authorization and audit
 
-Status: Draft  
+Status: Review  
 Estimated complexity: High
 
 ## Objective
@@ -45,11 +45,11 @@ server enforcement, audit event model, actor/target context, and retention.
 
 ## Completion checklist
 
-- [ ] Server checks exist regardless of UI visibility.
-- [ ] Unknown roles and permissions deny access.
-- [ ] Cross-tenant identifiers cannot influence authorization.
-- [ ] Critical actions emit immutable, redacted audit events.
-- [ ] Permission matrix has automated coverage.
+- [x] Server checks exist regardless of UI visibility.
+- [x] Unknown roles and permissions deny access.
+- [x] Cross-tenant identifiers cannot influence authorization.
+- [x] Critical actions emit immutable, redacted audit events.
+- [x] Permission matrix has automated coverage.
 
 ## Exit criteria
 
